@@ -1,0 +1,167 @@
+# Copyright (C) 2024 New Line Technologies
+# This file is distributed under the same license as the Mobizy plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ale Property\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/nlt-mobizy\n"
+"POT-Creation-Date: 2024-12-20 18:09+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: mobizy\n"
+"X-Poedit-KeywordsList: esc_html_e;esc_html__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/cpt.php:26
+msgid "Properties"
+msgstr ""
+
+#: inc/cpt.php:27
+msgid "Add New Property"
+msgstr ""
+
+#: inc/cpt.php:28
+msgid "New Property"
+msgstr ""
+
+#: inc/cpt.php:29
+msgid "Edit Property"
+msgstr ""
+
+#: inc/cpt.php:30
+msgid "All Properties"
+msgstr ""
+
+#: inc/cpt.php:31
+msgid "Property"
+msgstr ""
+
+#: inc/cpt.php:44
+msgid "Agents"
+msgstr ""
+
+#: inc/cpt.php:45
+msgid "Add New Agent"
+msgstr ""
+
+#: inc/cpt.php:46
+msgid "New Agent"
+msgstr ""
+
+#: inc/cpt.php:47
+msgid "Edit Agent"
+msgstr ""
+
+#: inc/cpt.php:48
+msgid "All Agents"
+msgstr ""
+
+#: inc/cpt.php:49 inc/cpt.php:149
+msgid "Agent"
+msgstr ""
+
+#: inc/cpt.php:68
+msgid "Search Locations"
+msgstr ""
+
+#: inc/cpt.php:69
+msgid "All Locations"
+msgstr ""
+
+#: inc/cpt.php:70
+msgid "Parent Location"
+msgstr ""
+
+#: inc/cpt.php:71
+msgid "Parent Location:"
+msgstr ""
+
+#: inc/cpt.php:72
+msgid "Edit Location"
+msgstr ""
+
+#: inc/cpt.php:73
+msgid "Update Location"
+msgstr ""
+
+#: inc/cpt.php:74
+msgid "Add New Location"
+msgstr ""
+
+#: inc/cpt.php:75
+msgid "New Location Name"
+msgstr ""
+
+#: inc/cpt.php:76
+msgid "Location"
+msgstr ""
+
+#: inc/cpt.php:90
+msgid "Search Types"
+msgstr ""
+
+#: inc/cpt.php:91
+msgid "All Types"
+msgstr ""
+
+#: inc/cpt.php:92
+msgid "Parent Type"
+msgstr ""
+
+#: inc/cpt.php:93
+msgid "Parent Type:"
+msgstr ""
+
+#: inc/cpt.php:94
+msgid "Edit Type"
+msgstr ""
+
+#: inc/cpt.php:95
+msgid "Update Type"
+msgstr ""
+
+#: inc/cpt.php:96
+msgid "Add New Type"
+msgstr ""
+
+#: inc/cpt.php:97
+msgid "New Type Name"
+msgstr ""
+
+#: inc/cpt.php:98 inc/cpt.php:138
+msgid "Type"
+msgstr ""
+
+#: inc/cpt.php:128
+msgid "Price"
+msgstr ""
+
+#: inc/cpt.php:133
+msgid "Period"
+msgstr ""
+
+#: inc/cpt.php:140
+msgid "Select Type"
+msgstr ""
+
+#: inc/cpt.php:141
+msgid "For Sale"
+msgstr ""
+
+#: inc/cpt.php:142
+msgid "For Rent"
+msgstr ""
+
+#: inc/cpt.php:143
+msgid "Sold"
+msgstr ""
+
+#: inc/cpt.php:151
+msgid "Select Agent"
+msgstr ""

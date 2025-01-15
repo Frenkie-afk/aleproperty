@@ -1,0 +1,168 @@
+# Copyright (C) 2024 New Line Technologies
+# This file is distributed under the same license as the Mobizy plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ale Property\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/nlt-mobizy\n"
+"POT-Creation-Date: 2024-12-20 18:06+0200\n"
+"PO-Revision-Date: 2024-12-21 15:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Domain: mobizy\n"
+"X-Poedit-KeywordsList: esc_html_e;esc_html__\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/cpt.php:26
+msgid "Properties"
+msgstr "Нерухомість"
+
+#: inc/cpt.php:27
+msgid "Add New Property"
+msgstr "Додати нову нерухомість"
+
+#: inc/cpt.php:28
+msgid "New Property"
+msgstr "Нова нерухомість"
+
+#: inc/cpt.php:29
+msgid "Edit Property"
+msgstr "Редагувати Нерухомість"
+
+#: inc/cpt.php:30
+msgid "All Properties"
+msgstr "Вся нерухомість"
+
+#: inc/cpt.php:31
+msgid "Property"
+msgstr "Нерухомість"
+
+#: inc/cpt.php:44
+msgid "Agents"
+msgstr "Агенти"
+
+#: inc/cpt.php:45
+msgid "Add New Agent"
+msgstr "Додати нового агента"
+
+#: inc/cpt.php:46
+msgid "New Agent"
+msgstr "Новий Агент"
+
+#: inc/cpt.php:47
+msgid "Edit Agent"
+msgstr "Редагувати Агента"
+
+#: inc/cpt.php:48
+msgid "All Agents"
+msgstr "Всі Агенти"
+
+#: inc/cpt.php:49 inc/cpt.php:149
+msgid "Agent"
+msgstr "Агент"
+
+#: inc/cpt.php:68
+msgid "Search Locations"
+msgstr "Шукати Локації"
+
+#: inc/cpt.php:69
+msgid "All Locations"
+msgstr "Всі Локації"
+
+#: inc/cpt.php:70
+msgid "Parent Location"
+msgstr "Батьківське розташування"
+
+#: inc/cpt.php:71
+msgid "Parent Location:"
+msgstr "Батьківське розташування:"
+
+#: inc/cpt.php:72
+msgid "Edit Location"
+msgstr "Змінити розташування"
+
+#: inc/cpt.php:73
+msgid "Update Location"
+msgstr "Оновлення розташування"
+
+#: inc/cpt.php:74
+msgid "Add New Location"
+msgstr "Додати нове розташування"
+
+#: inc/cpt.php:75
+msgid "New Location Name"
+msgstr "Нове ім'я розташування"
+
+#: inc/cpt.php:76
+msgid "Location"
+msgstr "Розташування"
+
+#: inc/cpt.php:90
+msgid "Search Types"
+msgstr "Типи пошуку"
+
+#: inc/cpt.php:91
+msgid "All Types"
+msgstr "Всі типи"
+
+#: inc/cpt.php:92
+msgid "Parent Type"
+msgstr "Батьківський тип"
+
+#: inc/cpt.php:93
+msgid "Parent Type:"
+msgstr "Батьківський тип:"
+
+#: inc/cpt.php:94
+msgid "Edit Type"
+msgstr "Редагувати тип"
+
+#: inc/cpt.php:95
+msgid "Update Type"
+msgstr "Оновити тип"
+
+#: inc/cpt.php:96
+msgid "Add New Type"
+msgstr "Додати новий тип"
+
+#: inc/cpt.php:97
+msgid "New Type Name"
+msgstr "Ім'я нового типу"
+
+#: inc/cpt.php:98 inc/cpt.php:138
+msgid "Type"
+msgstr "Тип"
+
+#: inc/cpt.php:128
+msgid "Price"
+msgstr "Ціна"
+
+#: inc/cpt.php:133
+msgid "Period"
+msgstr "Період"
+
+#: inc/cpt.php:140
+msgid "Select Type"
+msgstr "Обрати тип"
+
+#: inc/cpt.php:141
+msgid "For Sale"
+msgstr "На продаж"
+
+#: inc/cpt.php:142
+msgid "For Rent"
+msgstr "Під оренду"
+
+#: inc/cpt.php:143
+msgid "Sold"
+msgstr "Продано"
+
+#: inc/cpt.php:151
+msgid "Select Agent"
+msgstr "Обрати агента"
