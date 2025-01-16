@@ -34,6 +34,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 require_once ALE_PROPERTY_PATH . '/inc/class-template-loader.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-shortcodes.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-widget.php';
+require_once ALE_PROPERTY_PATH . '/inc/class-settings-page.php';
 
 class AleProperty
 {
@@ -47,7 +48,12 @@ class AleProperty
     public static function init(): void
     {
         self::init_hooks();
-        new AlepropertyCpt(); // instance cpt
+        new AlepropertyCpt(); // instantiate cpt
+
+	    if ( is_admin() ) {
+		    new AlepropertySettingsPage(); // instantiate setting page
+	    }
+
         self::$template_loader = new AlepropertyTemplateLoader();
     }
     private static function init_hooks(): void
