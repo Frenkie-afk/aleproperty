@@ -33,6 +33,7 @@ if ( ! class_exists( 'Gamajo_Template_Loader' ) ) {
 
 require_once ALE_PROPERTY_PATH . '/inc/class-template-loader.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-shortcodes.php';
+require_once ALE_PROPERTY_PATH . '/inc/class-widget.php';
 
 class AleProperty
 {
@@ -55,6 +56,7 @@ class AleProperty
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueue_front_scripts']);
         add_action('init', [__CLASS__, 'init_action']);
         add_action('pre_get_posts', [__CLASS__, 'adjust_wp_queries']);
+        add_action('widgets_init', [__CLASS__, 'register_widgets']);
     }
     public static function init_action(): void
     {
@@ -180,6 +182,11 @@ class AleProperty
 
             endif;
         }
+    }
+
+    public static function register_widgets(): void
+    {
+        register_widget('AlepropertyWidget'); // add Widget classname
     }
 
 }

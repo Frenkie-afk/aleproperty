@@ -1,3 +1,3 @@
 # Aleproperty
 
-A wordpress plugin playground with property list functionality.
+A WordPress plugin playground with property list functionality.
