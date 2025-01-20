@@ -13,11 +13,11 @@ get_header(); ?>
 
                 <?php the_post_thumbnail('medium_large', ['class' => 'property-thumbnail', 'title' => 'Feature image']); ?>
 
-                <h2 style="margin-block: 1rem"><?php the_title(); ?></h2>
+                <h2 id="aleproperty-property-title" style="margin-block: 1rem"><?php the_title(); ?></h2>
 
                 <div class="description" style="margin-bottom: 1rem"><?php the_content(); ?></div>
 
-                <div class="post-meta">
+                <div class="post-meta" style="margin-bottom: 1rem">
                     <p>
                         <?php
                         esc_html_e('Location:', 'ale-property');
@@ -47,6 +47,8 @@ get_header(); ?>
                         ?>
                     </p>
                 </div>
+
+                <?php AlepropertyBookingForm::render_form(); // render booking form ?>
 
             </article><!-- #post-<?php the_ID(); ?> -->
         <?php endwhile; ?>

@@ -27,3 +27,36 @@ article.property, article.agent {
     max-width: unset !important;
     height: auto !important;
 }
+
+.single-property article.property {
+    width: min(100%, 800px);
+    margin-inline: auto;
+}
+
+#aleproperty-booking-form {
+    transition: .4s;
+}
+#aleproperty-booking-form.aleproperty-validation-error input:placeholder-shown {
+    border-color: red;
+}
+#aleproperty-booking-form input {
+    width: 100%;
+}
+#aleproperty-booking-form > div {
+    margin-bottom: 1rem;
+}
+.aleproperty-form-processing {
+    opacity: .5;
+    pointer-events: none;
+}
+.aleproperty-form-error {
+    color: red;
+}
+.aleproperty-form-success {
+    color: green;
+}
+
+#aleproperty-booking-result:not(:empty) {
+    margin-top: 1.5rem;
+    text-align: center;
+}

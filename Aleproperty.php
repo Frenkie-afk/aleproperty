@@ -3,7 +3,8 @@
  * Plugin Name: Ale Property
  * Description: Booking apartments plugin
  * Version: 1.0.0
- * Author: Frenkie
+ * Author: Serhii Afanasiev
+ * Author URI: https://github.com/Frenkie-afk
  * Text Domain: ale-property
  * Domain Path: /languages
  * License: GPLv2 or later
@@ -16,6 +17,9 @@ if (!defined('ABSPATH')) {
 /** Global constants */
 if ( ! defined( 'ALE_PROPERTY_PATH' ) ) {
     define( 'ALE_PROPERTY_PATH', plugin_dir_path( __FILE__ ) );
+}
+if ( ! defined( 'ALE_PROPERTY_URL' ) ) {
+	define( 'ALE_PROPERTY_URL', plugin_dir_url( __FILE__ ) );
 }
 if ( ! defined( 'ALE_PROPERTY_TEMPLATES_PATH' ) ) {
     define( 'ALE_PROPERTY_TEMPLATES_PATH', plugin_dir_path( __FILE__ ) . '/templates' );
@@ -35,6 +39,7 @@ require_once ALE_PROPERTY_PATH . '/inc/class-template-loader.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-shortcodes.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-widget.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-settings-page.php';
+require_once ALE_PROPERTY_PATH . '/inc/class-booking-form.php';
 
 class AleProperty
 {
@@ -53,6 +58,9 @@ class AleProperty
 	    if ( is_admin() ) {
 		    new AlepropertySettingsPage(); // instantiate setting page
 	    }
+
+        new AlepropertyBookingForm();
+
 
         self::$template_loader = new AlepropertyTemplateLoader();
     }
@@ -81,6 +89,21 @@ class AleProperty
     {
         wp_enqueue_style( 'aleproperty-front-style', plugin_dir_url(__FILE__) . '/assets/css/front/style.css', [], ALE_PROPERTY_VERSION );
         wp_enqueue_script('aleproperty-front-scripts', plugin_dir_url(__FILE__) . '/assets/js/front/main.js', ['jquery'], ALE_PROPERTY_VERSION, ['strategy' => 'defer', 'in_footer'=> true, ]);
+
+	    wp_localize_script('aleproperty-front-scripts', 'aleproperty_data', array(
+		    'ajax' => [
+			    'url'   => admin_url( 'admin-ajax.php' ),
+			    'nonce' => wp_create_nonce( 'aleproperty_nonce' ),
+		    ],
+            'data' => [
+                'title' => esc_html__('Booking Form', 'ale-property'),
+            ],
+            'i18n' => [
+                'validation' => [
+                    'empty_fields' => esc_html__('Please fill in all required fields', 'ale-property'),
+                ]
+            ]
+	    ));
     }
 
 
@@ -139,7 +162,7 @@ class AleProperty
             $meta_query = $query->get('meta_query') ?: ['relation' => 'AND'];
             $tax_query = $query->get('tax_query') ?: ['relation' => 'AND'];
 
-            $query->set('posts_per_page', 1);
+            $query->set('posts_per_page', get_option( 'posts_per_page' ) ?? 10);
             $query->set('tax_query', ['relation' => 'AND']);
             $query->set('meta_query', ['relation' => 'AND']);
 
