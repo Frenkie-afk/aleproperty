@@ -126,7 +126,7 @@ class AlepropertyCpt
 
         <p>
             <label for="aleproperty_price"><?php esc_html_e('Price', 'ale-property'); ?></label>
-            <input type="number" id="aleproperty_price" name="aleproperty_price" value="<?php echo esc_attr($price); ?>">
+            <input type="number" id="aleproperty_price" name="aleproperty_price" value="<?php echo esc_attr($price); ?>" required>
         </p>
 
         <p>
@@ -136,7 +136,7 @@ class AlepropertyCpt
 
         <p>
             <label for="aleproperty_type"><?php esc_html_e('Type', 'ale-property'); ?></label>
-            <select name="aleproperty_type" id="aleproperty_type">
+            <select name="aleproperty_type" id="aleproperty_type" required>
                 <option value="" ><?php esc_html_e('Select Type', 'ale-property'); ?></option>
                 <option value="sale" <?php selected('sale', $type); ?>><?php esc_html_e('For Sale', 'ale-property'); ?></option>
                 <option value="rent" <?php selected('rent', $type); ?>><?php esc_html_e('For Rent', 'ale-property'); ?></option>

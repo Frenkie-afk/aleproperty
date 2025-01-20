@@ -6,8 +6,7 @@ get_header();
 
 <div class="container property-archive ">
     <?php
-        global $ale_property;
-        $template_loader =  $ale_property::get_template_loader();
+        $template_loader =  AleProperty::get_template_loader();
 
         $template_loader->get_template_part( 'template-parts/filters'); // load filters template
 

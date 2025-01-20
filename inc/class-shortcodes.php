@@ -2,6 +2,8 @@
 /**
  * Example how to create a shortcode for the plugin
  *
+ * see: https://codex.wordpress.org/Shortcode_API
+ * see: https://misha.agency/wordpress/shortcodes.html
  */
 class AlepropertyShortcodes
 {
