@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     const booking = {
         ajax: aleproperty_data.ajax, //var added by wp_localize_script
-        i18n: aleproperty_data.i18n, //var added by wp_localize_script
+        i18n: aleproperty_data.i18n.validation, //var added by wp_localize_script
         init: function(){
             this.bookingForm();
         },
@@ -24,7 +24,7 @@ jQuery(document).ready(function($){
                 //todo: make advance validation(email, phone, etc.) with separate validation methods
                 if (!data.name || !data.email || !data.phone) {
                     bookingForm.addClass('aleproperty-validation-error');
-                    bookingResultContainer.html(booking.i18n.validation.empty_fields).addClass('aleproperty-form-error');
+                    bookingResultContainer.html(booking.i18n.empty_fields).addClass('aleproperty-form-error');
                     return;
                 } else {
                     bookingForm.removeClass('aleproperty-validation-error');

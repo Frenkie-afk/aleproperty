@@ -4,6 +4,9 @@
  *
  * Post-type registration: https://developer.wordpress.org/reference/functions/register_post_type/
  * Meta-box registration: https://developer.wordpress.org/reference/functions/add_meta_box/
+ * Post Type Columns: https://developer.wordpress.org/reference/hooks/manage_post_type_posts_columns/
+ * Table Sortable Columns: https://developer.wordpress.org/reference/hooks/manage_this-screen-id_sortable_columns/
+ * OOP example: https://wp-kama.ru/id_995/dopolnitelnyie-sortiruemyie-kolonki-u-postov-v-adminke.html#kod-tselikom
  */
 
 class AlepropertyCpt
@@ -13,6 +16,11 @@ class AlepropertyCpt
         add_action('init', [$this, 'custom_post_type']);
         add_action('add_meta_boxes', [$this, 'add_meta_box_property']);
         add_action('save_post', [$this, 'save_meta_box'], 10, 2);
+
+        add_filter('manage_property_posts_columns', [__CLASS__, 'manage_custom_columns']);
+        add_action('manage_property_posts_custom_column', [__CLASS__, 'manage_custom_column_value'], 10, 2);
+        add_filter('manage_edit-property_sortable_columns', [__CLASS__, 'manage_sortable_columns'], 10, 2);
+        add_action('pre_get_posts', [__CLASS__, 'handle_sort_query']);
     }
 
     public function custom_post_type(): void
@@ -210,5 +218,79 @@ class AlepropertyCpt
             // update or add meta field
             update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$meta_key]));
         }
+    }
+
+    /**
+     * Add custom columns for a specific post type in the Posts list table.
+     * */
+    public static function manage_custom_columns( $columns ): array
+    {
+        // return custom array to reorder columns
+	    return [
+            'title'                  => $columns['title'],
+            'taxonomy-location'      => $columns['taxonomy-location'],
+            'taxonomy-property-type' => $columns['taxonomy-property-type'],
+            'price'                  => __('Price', 'ale-property'),
+            'offer'                  => __('Offer', 'ale-property'),
+            'agent'                  => __('Agent', 'ale-property'),
+            'date'                   => $columns['date'],
+        ];
+
+    }
+
+	/**
+	 * Add custom columns value for a specific post type in the Posts list table.
+	 * */
+    public static function manage_custom_column_value( $column, $post_id  ): void
+    {
+        switch ($column) {
+            case 'price':
+                echo esc_html( get_post_meta($post_id, 'aleproperty_price', true) );
+                break;
+            case 'offer':
+                echo esc_html( get_post_meta($post_id, 'aleproperty_type', true) );
+                break;
+            case 'agent':
+	            $agent_meta = get_post_meta($post_id, 'aleproperty_agent', true);
+
+                echo esc_html( get_the_title($agent_meta) );
+                break;
+        }
+    }
+
+    /**
+     * Add custom sortable columns in the Posts list table
+     *
+     * */
+    public static function manage_sortable_columns( $sortable_columns ): array {
+	    $sortable_columns['price'] = 'price_amount';
+        $sortable_columns['offer'] = 'offer';
+//	    $sortable_columns['agent'] = 'agent';
+
+        return $sortable_columns;
+    }
+
+	/**
+	 * Adjust wp query to set sorting for custom columns in the Posts list table
+	 *
+	 * */
+    public static function handle_sort_query( $query )
+    {
+        //only if admin, main query and property post type list table
+        if ( !is_admin() || ! $query->is_main_query() || get_current_screen()->id !== 'edit-property' ) return;
+
+        $orderby = $query->get( 'orderby' );
+
+        switch ( $orderby ) {
+            case 'price_amount':
+                $query->set( 'meta_key', 'aleproperty_price' );
+	            $query->set( 'orderby', 'meta_value_num' );
+                break;
+            case 'offer':
+                $query->set( 'meta_key', 'aleproperty_type' );
+	            $query->set( 'orderby', 'meta_value' );
+                break;
+        }
+        //todo: for taxonomy ordering use custom SQL queries and logic
     }
 }
