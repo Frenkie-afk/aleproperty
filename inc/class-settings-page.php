@@ -87,6 +87,18 @@ class AlepropertySettingsPage
 			]
 		);
 
+		add_settings_field(
+			'aleproperty_settings_property_page',
+			__('Select Add property Page', 'ale-property'),
+			[__CLASS__, 'render_property_page_select'],
+			'aleproperty-settings-page',
+			'aleproperty_setting_section',
+			[   // $args
+				'full_name'     => 'aleproperty_settings[aleproperty_settings_property_page]',
+				'value'         =>  get_option('aleproperty_settings')['aleproperty_settings_property_page'] ?? 0,
+			]
+		);
+
 	}
 
 	public static function render_text_field($args): void
@@ -110,6 +122,20 @@ class AlepropertySettingsPage
         >
 	<?php }
 
+	public static function render_property_page_select($args): void { ?>
+        <select name="<?php echo esc_attr($args['full_name']); ?>">
+            <option value=""><?php esc_html_e( 'Select Add Property Page', 'ale-property' ); ?></option>
+
+            <?php if ( $pages = get_pages() ):
+                foreach ( $pages as $page ): ?>
+                    <option value="<?php echo esc_attr( $page->ID ); ?>" <?php selected($args['value'], $page->ID); ?>>
+                        <?php echo esc_html( $page->post_title ); ?>
+                    </option>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+	<?php }
+
 	public static function  sanitize_array_settings($input): array
     {
 		if (!is_array($input)) {
@@ -118,5 +144,6 @@ class AlepropertySettingsPage
 
 		return array_map('sanitize_text_field', $input); // sanitize all data
 	}
+    
 
 }
