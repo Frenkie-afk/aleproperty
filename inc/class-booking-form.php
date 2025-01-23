@@ -58,15 +58,15 @@ class AlepropertyBookingForm
 	    <?php endif; ?>
 
         <form  method="post" id="aleproperty-booking-form">
-            <div>
+            <div class="aleproperty-form-group">
                 <input type="text" name="name" id="aleproperty-booking-name" placeholder="<?php esc_html_e('Name', 'ale-property'); ?>" required>
             </div>
 
-            <div>
+            <div class="aleproperty-form-group">
                 <input type="email" name="email" id="aleproperty-booking-email" placeholder="<?php esc_html_e('Email', 'ale-property'); ?>" required>
             </div>
 
-            <div>
+            <div class="aleproperty-form-group">
                 <input type="tel" name="phone" id="aleproperty-booking-phone" placeholder="<?php esc_html_e('Phone', 'ale-property'); ?>" required>
             </div>
 

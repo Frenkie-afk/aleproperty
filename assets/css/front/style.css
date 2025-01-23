@@ -33,18 +33,23 @@ article.property, article.agent {
     margin-inline: auto;
 }
 
+.aleproperty-form-group {
+    margin-bottom: 1rem;
+}
+.aleproperty-form-group input {
+    width: 100%;
+}
+.aleproperty-form-group > label {
+    display: block;
+}
+
 #aleproperty-booking-form {
     transition: .4s;
 }
 #aleproperty-booking-form.aleproperty-validation-error input:placeholder-shown {
     border-color: red;
 }
-#aleproperty-booking-form input {
-    width: 100%;
-}
-#aleproperty-booking-form > div {
-    margin-bottom: 1rem;
-}
+
 .aleproperty-form-processing {
     opacity: .5;
     pointer-events: none;

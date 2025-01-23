@@ -142,6 +142,7 @@ class AlepropertyCpt
             <input type="text" id="aleproperty_period" name="aleproperty_period" value="<?php echo esc_attr($period); ?>">
         </p>
 
+        <?php //todo: make helper function to reuse metaboxes layout ?>
         <p>
             <label for="aleproperty_type"><?php esc_html_e('Type', 'ale-property'); ?></label>
             <select name="aleproperty_type" id="aleproperty_type" required>
@@ -200,17 +201,20 @@ class AlepropertyCpt
 
         foreach ($meta_fields as $meta_key)
         {
-            $this->save_meta_fields($post_id, $meta_key);
+            // $this->save_meta_fields($post_id, $meta_key);
+
+	        update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$meta_key]));
         }
 
     }
 
     private function save_meta_fields($post_id, $meta_key): void
     {
+	    var_dump($_POST);
         if (isset($_POST[$meta_key]) && empty($_POST[$meta_key]))
         {
             //todo: check deleting the meta when saving an empty field
-            delete_post_meta($post_id, sanitize_text_field($_POST[$meta_key]));
+            delete_post_meta($post_id, sanitize_text_field($_POST[$meta_key]), '');
 //            wp_die(get_post_meta($post_id, sanitize_text_field($_POST[$meta_key])));
         }
         else
@@ -245,15 +249,15 @@ class AlepropertyCpt
     {
         switch ($column) {
             case 'price':
-                echo esc_html( get_post_meta($post_id, 'aleproperty_price', true) );
+                echo esc_html( get_post_meta($post_id, 'aleproperty_price', true) ?:  '—' );
                 break;
             case 'offer':
-                echo esc_html( get_post_meta($post_id, 'aleproperty_type', true) );
+                echo esc_html( get_post_meta($post_id, 'aleproperty_type', true) ?: '—' );
                 break;
             case 'agent':
 	            $agent_meta = get_post_meta($post_id, 'aleproperty_agent', true);
 
-                echo esc_html( get_the_title($agent_meta) );
+                echo esc_html( $agent_meta ? get_the_title($agent_meta) : '—' );
                 break;
         }
     }

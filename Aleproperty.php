@@ -81,14 +81,14 @@ class AleProperty
 
     public static function enqueue_admin_scripts(): void
     {
-        wp_enqueue_style( 'aleproperty-admin-style', plugin_dir_url(__FILE__) . '/assets/css/admin/style.css', [], ALE_PROPERTY_VERSION );
-        wp_enqueue_script('aleproperty-admin-scripts', plugin_dir_url(__FILE__) . '/assets/js/admin/main.js', ['jquery'], ALE_PROPERTY_VERSION, ['strategy' => 'defer', 'in_footer'=> true, ]);
+        wp_enqueue_style( 'aleproperty-admin-style', ALE_PROPERTY_URL . 'assets/css/admin/style.css', [], ALE_PROPERTY_VERSION );
+        wp_enqueue_script('aleproperty-admin-scripts', ALE_PROPERTY_URL . 'assets/js/admin/main.js', ['jquery'], ALE_PROPERTY_VERSION, ['strategy' => 'defer', 'in_footer'=> true, ]);
     }
 
     public static function enqueue_front_scripts(): void
     {
-        wp_enqueue_style( 'aleproperty-front-style', plugin_dir_url(__FILE__) . '/assets/css/front/style.css', [], ALE_PROPERTY_VERSION );
-        wp_enqueue_script('aleproperty-front-scripts', plugin_dir_url(__FILE__) . '/assets/js/front/main.js', ['jquery'], ALE_PROPERTY_VERSION, ['strategy' => 'defer', 'in_footer'=> true, ]);
+        wp_enqueue_style( 'aleproperty-front-style', ALE_PROPERTY_URL . 'assets/css/front/style.css', [], ALE_PROPERTY_VERSION );
+        wp_enqueue_script('aleproperty-front-scripts', ALE_PROPERTY_URL . 'assets/js/front/main.js', ['jquery'], ALE_PROPERTY_VERSION, ['strategy' => 'defer', 'in_footer'=> true, ]);
 
 	    wp_localize_script('aleproperty-front-scripts', 'aleproperty_data', array(
 		    'ajax' => [
@@ -125,10 +125,10 @@ class AleProperty
      * Display taxonomy with select options hierarchically (now only 2 levels)
      *
      */
-    //todo: it doesn't affect if hierarchy has more than 2 levels
-    public static function get_terms_hierarchically($tax_name, $current_term): void
+    //todo: it doesn't affect if hierarchy has more than 2 levels. Also move to "Helpers" class
+    public static function get_terms_hierarchically($tax_name, $current_term = null): void
     {
-        $taxonomy_terms = get_terms($tax_name, ['hide_empty' => false, 'parent' => 0]);
+        $taxonomy_terms = get_terms( ['taxonomy' => $tax_name, 'hide_empty' => false, 'parent' => 0] );
 
         foreach ($taxonomy_terms as $term) { ?>
             <option
@@ -139,7 +139,7 @@ class AleProperty
             </option>
 
             <?php
-            $child_terms = get_terms($tax_name, ['hide_empty' => false, 'parent' => $term->term_id]);
+            $child_terms = get_terms( ['taxonomy' => $tax_name, 'hide_empty' => false, 'parent' => $term->term_id] );
 
             foreach ($child_terms as $child) : ?>
                 <option
