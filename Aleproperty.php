@@ -40,6 +40,7 @@ require_once ALE_PROPERTY_PATH . '/inc/class-shortcodes.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-widget.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-settings-page.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-booking-form.php';
+require_once ALE_PROPERTY_PATH . '/inc/class-common-helper.php';
 
 class AleProperty
 {

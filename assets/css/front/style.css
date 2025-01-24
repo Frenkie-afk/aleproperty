@@ -36,7 +36,7 @@ article.property, article.agent {
 .aleproperty-form-group {
     margin-bottom: 1rem;
 }
-.aleproperty-form-group input {
+.aleproperty-form-group :where(input, select, textarea) {
     width: 100%;
 }
 .aleproperty-form-group > label {
