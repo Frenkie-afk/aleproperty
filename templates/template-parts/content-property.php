@@ -11,17 +11,21 @@
     <div class="post-meta">
         <p>
             <?php
-            esc_html_e('Location:', 'ale-property');
-
             $terms = wp_get_post_terms( get_the_ID(), 'location', array("fields" => "names") );
-            echo ' ' . esc_html( implode(', ', $terms) );
+            if (! is_wp_error($terms) && ! empty($terms)) {
+	            esc_html_e('Location:', 'ale-property');
+
+	            echo ' ' . esc_html( implode(', ', $terms) );
+            }
             ?>
         </p>
         <p>
-            <?php esc_html_e('Type:', 'ale-property');
+            <?php $property_types = wp_get_post_terms( get_the_ID(), 'property-type', array("fields" => "names") );
+            if (! is_wp_error($property_types) && ! empty($property_types)) {
+	            esc_html_e('Type:', 'ale-property');
 
-            $property_types = wp_get_post_terms( get_the_ID(), 'property-type', array("fields" => "names") );
-            echo ' ' . esc_html( implode(', ', $property_types) );
+	            echo ' ' . esc_html( implode(', ', $property_types) );
+            }
             ?>
         </p>
         <p><?php esc_html_e('Price:', 'ale-property'); ?> <?php echo esc_html(get_post_meta(get_the_ID(), 'aleproperty_price', true)); ?></p>
@@ -38,5 +42,7 @@
             ?>
         </p>
     </div>
+
+	<?php AlepropertyWishlist::render_add_wishlist_button(); ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->

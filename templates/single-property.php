@@ -48,6 +48,7 @@ get_header(); ?>
                     </p>
                 </div>
 
+	            <?php AlepropertyWishlist::render_add_wishlist_button(); // render wishlist button ?>
                 <?php AlepropertyBookingForm::render_form(); // render booking form ?>
 
             </article><!-- #post-<?php the_ID(); ?> -->

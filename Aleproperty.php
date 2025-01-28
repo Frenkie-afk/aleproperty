@@ -41,6 +41,7 @@ require_once ALE_PROPERTY_PATH . '/inc/class-widget.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-settings-page.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-booking-form.php';
 require_once ALE_PROPERTY_PATH . '/inc/class-common-helper.php';
+require_once ALE_PROPERTY_PATH . '/inc/class-wishlist.php';
 
 class AleProperty
 {
@@ -60,8 +61,8 @@ class AleProperty
 		    new AlepropertySettingsPage(); // instantiate setting page
 	    }
 
-        new AlepropertyBookingForm();
-
+        AlepropertyBookingForm::init();
+        AlepropertyWishlist::init();
 
         self::$template_loader = new AlepropertyTemplateLoader();
     }

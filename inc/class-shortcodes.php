@@ -244,7 +244,7 @@ class AlepropertyShortcodes
 
 	    if ( $is_post_exist ) {
 		    $message = __( '<strong>Duplicate Post Error:</strong> it seems like you are trying to add the identical post.', 'ale-property' );
-		    wp_die( new WP_Error( 'attached_image_too_large', $message, 409 ), '', ['back_link' => true] );
+		    wp_die( new WP_Error( 'duplicate_post', $message, 409 ), '', ['back_link' => true] );
 	    }
 
         //validation and upload thumbnail
