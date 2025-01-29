@@ -7,4 +7,9 @@ Plugin includes:
 - Metaboxes
 - Shortcodes
 - Widget
-- Template loader 
+- Template loader
+- Wishlist
+
+## Wishlist setup
+
+Create a basic page and add the [aleproperty_wishlist] shortcode to it.
