@@ -28,7 +28,7 @@
             }
             ?>
         </p>
-        <p><?php esc_html_e('Price:', 'ale-property'); ?> <?php echo esc_html(get_post_meta(get_the_ID(), 'aleproperty_price', true)); ?></p>
+        <p><?php esc_html_e('Price:', 'ale-property'); ?> &#36;<?php echo esc_html(get_post_meta(get_the_ID(), 'aleproperty_price', true)); ?></p>
         <p><?php esc_html_e('Offer:', 'ale-property'); ?> <?php echo esc_html(get_post_meta(get_the_ID(), 'aleproperty_type', true)); ?></p>
         <p>
             <?php

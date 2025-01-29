@@ -66,6 +66,10 @@ article.property, article.agent {
     text-align: center;
 }
 
+.aleproperty-ajax-active {
+    pointer-events: none;
+    opacity: 0.75;
+}
 .aleproperty-wishlist-btn {
     position: relative;
     z-index: 2;
@@ -87,4 +91,43 @@ article.property, article.agent {
 }
 .aleproperty-wishlist-btn.item-added svg{
     fill: coral;
+}
+
+.aleproperty-wishlist {
+    max-width: unset !important;
+}
+.aleproperty-wishlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    transition: .4s;
+}
+.aleproperty-wishlist-item + .aleproperty-wishlist-item {
+    margin-top: 1rem !important;
+}
+.aleproperty-wishlist-item > figure {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.aleproperty-wishlist-item > figure > figcaption {
+    text-align: left;
+    margin: 0;
+}
+.aleproperty-wishlist-item > figure .property-thumbnail {
+    width: 12rem !important;
+    max-width: 100% !important;
+    border-radius: 0.25rem;
+}
+.aleproperty-wishlist-item .aleproperty-wishlist-remove-item {
+    border: none !important;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+}
+.aleproperty-wishlist-item .aleproperty-wishlist-remove-item:not(:hover, :active) {
+    background-color: transparent !important;
+}
+.aleproperty-wishlist-item .aleproperty-wishlist-remove-item:where(:hover, :active) {
+    background-color: #f2f2f2 !important;
 }

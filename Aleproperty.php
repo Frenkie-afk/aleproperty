@@ -103,6 +103,9 @@ class AleProperty
             'i18n' => [
                 'validation' => [
                     'empty_fields' => esc_html__('Please fill in all required fields', 'ale-property'),
+                ],
+                'wishlist' => [
+                    'empty_wishlist' => esc_html__('Your wishlist is empty.', 'ale-property'),
                 ]
             ]
 	    ));

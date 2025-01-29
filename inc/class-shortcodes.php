@@ -18,6 +18,7 @@ class AlepropertyShortcodes
     {
         add_shortcode('aleproperty_filter', [__CLASS__, 'filter_shortcode']);
 	    add_shortcode('aleproperty_add_property', [__CLASS__, 'add_property_shortcode']);
+	    add_shortcode('aleproperty_wishlist', [__CLASS__, 'wishlist_shortcode']);
     }
     public static function filter_shortcode( $atts = [] ): string
     {
@@ -209,6 +210,49 @@ class AlepropertyShortcodes
 	    <?php return ob_get_clean();
     }
 
+    public static function wishlist_shortcode( array $atts = [] ): string {
+
+	    if (!is_user_logged_in()) {
+		    return "<div class='aleproperty-wishlist'><p style='text-align: center'>" . esc_html__( 'Please login to access your wishlist.', 'ale-property' ) . "</p></div>";
+	    }
+
+        $wishlist_items = AlepropertyWishlist::get_wishlist( get_current_user_id() );
+
+        if ( empty( $wishlist_items ) ) {
+	        return "<div class='aleproperty-wishlist'><p style='text-align: center;'>" . esc_html__('Your wishlist is empty.', 'ale-property') . "</p></div>";
+        }
+
+	    $args = [
+          'post_type'   => 'property',
+          'post_status' => 'publish',
+          'posts_per_page' => -1,
+          'post__in' => $wishlist_items,
+          'orderby' => 'post__in', //order by wishlist array order
+        ];
+
+        $wishlist = new WP_Query( $args );
+
+        if ( $wishlist->have_posts() ) :
+            ob_start();
+
+            echo "<div class='aleproperty-wishlist'>";
+            while ( $wishlist->have_posts() ) :
+                $wishlist->the_post();
+
+                self::render_wishlist_item();
+
+            endwhile;
+	        echo "</div>";
+
+            wp_reset_postdata();
+            return ob_get_clean();
+        else:
+            return "<div class='aleproperty-wishlist'><p style='text-align: center'>" . esc_html__('Your wishlist is empty.', 'ale-property') . "</p></div>";
+        endif;
+
+
+    }
+
     protected static function add_property_form_handler(): string
     {
 	    if ( ! function_exists( 'post_exists' ) ) {
@@ -288,4 +332,32 @@ class AlepropertyShortcodes
 
         return $attachmentId;
     }
+
+    protected static function render_wishlist_item (): void
+    { ?>
+        <article id="post-<?php the_ID(); ?>" <?php post_class('aleproperty-wishlist-item'); ?>>
+            <figure>
+                <a href="<?php echo esc_url( get_the_permalink() ); ?>">
+	                <?php the_post_thumbnail('medium_large', ['class' => 'property-thumbnail', 'title' => 'Feature image']); ?>
+                </a>
+                <figcaption>
+                    <?php the_title('<h3 style="margin-bottom: .5rem">', '</h3>'); ?>
+
+                    <h5 style="margin-bottom: .5rem"><?php esc_html_e('Price:', 'ale-property') ?> &#36;<?php echo esc_html(get_post_meta(get_the_ID(), 'aleproperty_price', true)); ?></h5>
+
+                    <a href="<?php echo esc_url( get_the_permalink() ); ?>" style="color: coral;font-size: 0.875rem"><?php esc_html_e('View details', 'ale-property'); ?></a>
+                </figcaption>
+            </figure>
+
+            <button class="aleproperty-wishlist-remove-item" type="button" data-property-id="<?php echo esc_attr( get_the_ID() ); ?>" title="<?php esc_attr_e('Remove item from the wishlist', 'ale-property'); ?>">
+                <svg style="display: block;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 15L10 12" stroke="coral" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14 15L14 12" stroke="coral" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 7H21V7C20.0681 7 19.6022 7 19.2346 7.15224C18.7446 7.35523 18.3552 7.74458 18.1522 8.23463C18 8.60218 18 9.06812 18 10V16C18 17.8856 18 18.8284 17.4142 19.4142C16.8284 20 15.8856 20 14 20H10C8.11438 20 7.17157 20 6.58579 19.4142C6 18.8284 6 17.8856 6 16V10C6 9.06812 6 8.60218 5.84776 8.23463C5.64477 7.74458 5.25542 7.35523 4.76537 7.15224C4.39782 7 3.93188 7 3 7V7Z" stroke="coral" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M10.0681 3.37059C10.1821 3.26427 10.4332 3.17033 10.7825 3.10332C11.1318 3.03632 11.5597 3 12 3C12.4403 3 12.8682 3.03632 13.2175 3.10332C13.5668 3.17033 13.8179 3.26427 13.9319 3.37059" stroke="coral" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+
+            </button>
+        </article>
+    <?php }
 }

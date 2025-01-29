@@ -1,8 +1,10 @@
 <?php
 /**
-	see: https://stackoverflow.com/questions/34001707/add-values-to-user-meta-field-within-an-array
-
- */
+ * Property wishlist class
+ *
+ * see: https://stackoverflow.com/questions/34001707/add-values-to-user-meta-field-within-an-array
+ *
+ * */
 class AlepropertyWishlist
 {
 	const ALEPROPERTY_WISHLIST_META_KEY = 'aleproperty_wishlist';
@@ -18,7 +20,7 @@ class AlepropertyWishlist
 
 	public static function init(): void
 	{
-		add_action( 'wp_ajax_add_property_to_wishlist', [__CLASS__, 'wishlist_handler'] );
+		add_action( 'wp_ajax_update-wishlist', [__CLASS__, 'wishlist_handler'] );
 	}
 
 	public static function wishlist_handler(): void
